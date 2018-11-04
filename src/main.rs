@@ -2,6 +2,7 @@ extern crate actix_web;
 
 use actix_web::http::{Method, StatusCode};
 use actix_web::{server, App, HttpRequest, HttpResponse, Responder};
+use std::env;
 
 fn index(_req: HttpRequest) -> impl Responder {
     let index_html = include_str!("../love-letter-ui/dist/index.html");
@@ -16,13 +17,15 @@ fn bundle(_req: HttpRequest) -> impl Responder {
 }
 
 fn main() {
-    println!("starting up on port 3000");
+    let port = env::var("PORT").unwrap_or("3000".into());
+
+    println!("starting up on port {}", port);
 
     server::new(|| {
         App::new()
             .resource("/", |r| r.method(Method::GET).with(index))
             .resource("/bundle.js", |r| r.method(Method::GET).with(bundle))
-    }).bind("0.0.0.0:3000")
+    }).bind(format!("0.0.0.0:{}", port))
     .unwrap()
     .run();
 }
