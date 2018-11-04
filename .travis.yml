@@ -1,0 +1,13 @@
+language: rust
+cache: cargo
+rust:
+  - stable
+script:
+  - nvm install --lts
+  - cd love-letter-ui
+  - npm install
+  - npm run build
+  # - npm run test
+  - cd -
+  - cargo build --verbose
+  - cargo test --verbose

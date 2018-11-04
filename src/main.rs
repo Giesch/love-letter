@@ -3,7 +3,7 @@ extern crate actix_web;
 use actix_web::http::{Method, StatusCode};
 use actix_web::{server, App, HttpRequest, HttpResponse, Responder};
 
-fn index(_req: HttpRequest) -> HttpResponse {
+fn index(_req: HttpRequest) -> impl Responder {
     let index_html = include_str!("../love-letter-ui/dist/index.html");
     HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")
