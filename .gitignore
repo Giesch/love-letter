@@ -1,2 +1,5 @@
 /target
 **/*.rs.bk
+
+/love-letter-ui/dist/bundle.js
+/love-letter-ui/dist/bundle.js.map
