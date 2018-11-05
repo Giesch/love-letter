@@ -12,13 +12,11 @@ fn index(_req: HttpRequest) -> impl Responder {
 }
 
 fn bundle(_req: HttpRequest) -> impl Responder {
-    let bundle_js = include_str!("../love-letter-ui/dist/bundle.js");
-    bundle_js
+    include_str!("../love-letter-ui/dist/bundle.js")
 }
 
 fn main() {
     let port = env::var("PORT").unwrap_or("3000".into());
-
     println!("starting up on port {}", port);
 
     server::new(|| {
