@@ -11,3 +11,5 @@ script:
   - cd -
   - cargo build --verbose
   - cargo test --verbose
+deploy:
+  skip_cleanup: true
