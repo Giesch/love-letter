@@ -4,6 +4,7 @@ import { Store } from 'redux';
 
 import { ApplicationState } from './store/index';
 import { HelloContainer } from './components/Hello';
+import { LobbyContainer } from './components/Lobby';
 
 interface Props {
   store: Store<ApplicationState>;
@@ -11,6 +12,6 @@ interface Props {
 
 export const Root = ({store}: Props) => (
   <Provider store={store}>
-    <HelloContainer />
+    <LobbyContainer />
   </Provider>
 );

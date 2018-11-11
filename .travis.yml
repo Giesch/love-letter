@@ -7,7 +7,7 @@ script:
   - cd love-letter-ui
   - npm install
   - npm run build-prod
-  # - npm run test
+  - npm run test
   - cd -
   - cargo build --verbose
   - cargo test --verbose
