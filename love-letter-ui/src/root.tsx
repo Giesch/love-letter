@@ -3,7 +3,6 @@ import { Provider, connect } from 'react-redux';
 import { Store } from 'redux';
 
 import { ApplicationState } from './store/index';
-import { HelloContainer } from './components/Hello';
 import { LobbyContainer } from './components/Lobby';
 
 interface Props {
