@@ -6,7 +6,7 @@ script:
   - nvm install --lts
   - cd love-letter-ui
   - npm install
-  - npm run build
+  - npm run build-prod
   # - npm run test
   - cd -
   - cargo build --verbose

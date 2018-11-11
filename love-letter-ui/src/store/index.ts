@@ -1,5 +1,4 @@
 import { combineReducers, Dispatch, Action, AnyAction } from 'redux'
-import { History } from 'history'
 import { HelloState } from './hello/types';
 import { helloReducer } from './hello/reducer';
 
