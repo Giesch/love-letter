@@ -26,14 +26,15 @@ export const Lobby = (props: Props) => (
         </Button>
         <Modal show={props.showCreateGameModal}
                onClose={props.hideModal}
-               showClose={false}
                closeOnBlur={true}>
           <Modal.Card>
-            <Modal.Card.Head>
+            <Modal.Card.Head onClose={props.hideModal}>
               <Modal.Card.Title>Create Game</Modal.Card.Title>
             </Modal.Card.Head>
             <Modal.Card.Body>Stuff Godes Here</Modal.Card.Body>
-            <Modal.Card.Foot>nope nope nope</Modal.Card.Foot>
+            <Modal.Card.Foot>
+              <Button onClick={props.hideModal}>NOPE</Button>
+            </Modal.Card.Foot>
           </Modal.Card>
         </Modal>
       </Section>
