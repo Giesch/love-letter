@@ -1,17 +1,18 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { Columns, Button, Section, Heading, Modal } from 'react-bulma-components/full';
 import * as lobbyActions from '../store/lobby/actions';
 import { ApplicationState } from '../store/index';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import CreateGameModal from './CreateGameModal';
 
 interface Props {
   showCreateGameModal: boolean;
-  showModal: typeof lobbyActions.showModal;
-  hideModal: typeof lobbyActions.hideModal;
+  showModal: Function;
+  hideModal: Function;
 }
 
-export const Lobby = (props: Props) => (
+export const Lobby: React.SFC<Props> = (props) => (
   <Columns>
     <Columns.Column size={9}>
       <Section>
@@ -20,24 +21,11 @@ export const Lobby = (props: Props) => (
     </Columns.Column>
 
     <Columns.Column>
-      <Section>
-        <Button color="info" onClick={props.showModal}>
-            Create Game
-        </Button>
-        <Modal show={props.showCreateGameModal}
-               onClose={props.hideModal}
-               closeOnBlur={true}>
-          <Modal.Card>
-            <Modal.Card.Head onClose={props.hideModal}>
-              <Modal.Card.Title>Create Game</Modal.Card.Title>
-            </Modal.Card.Head>
-            <Modal.Card.Body>Stuff Godes Here</Modal.Card.Body>
-            <Modal.Card.Foot>
-              <Button onClick={props.hideModal}>NOPE</Button>
-            </Modal.Card.Foot>
-          </Modal.Card>
-        </Modal>
-      </Section>
+      <CreateGameModal
+        showModal={props.showCreateGameModal}
+        onOpen={props.showModal}
+        onClose={props.hideModal}
+      />
     </Columns.Column>
   </Columns>
 );
