@@ -3,6 +3,7 @@ import { LobbyState, LobbyActionTypes } from './types';
 
 export const initialState: LobbyState = {
   showCreateGameModal: false,
+  openRooms: [],
 }
 
 export const lobbyReducer: Reducer<LobbyState> = (state = initialState, action) => {
@@ -12,6 +13,9 @@ export const lobbyReducer: Reducer<LobbyState> = (state = initialState, action) 
     }
     case LobbyActionTypes.HIDE_CREATE_GAME: {
       return { ...state, showCreateGameModal: false };
+    }
+    case LobbyActionTypes.FETCH_ROOMS_SUCCESS: {
+      return { ...state, openRooms: action.payload } // TODO: Types?
     }
     default: {
       return state;
