@@ -15,8 +15,6 @@ interface Props {
 }
 
 class LobbyContainer extends React.Component<Props> {
-  // TODO: loading indicator
-
   componentDidMount() {
     this.props.fetchRooms();
   }

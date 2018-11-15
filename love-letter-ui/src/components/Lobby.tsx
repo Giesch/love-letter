@@ -32,7 +32,6 @@ export const Lobby: React.SFC<Props> = (props) => (
       <div>
         {props.openRooms.map(RoomDisplay)}
       </div>
-
     </Columns.Column>
   </Columns>
 );
@@ -42,21 +41,3 @@ const RoomDisplay: React.SFC<Room> = (room) => (
     name: {room.name}
   </div>
 );
-
-const mapStateToProps = ({ lobby }: ApplicationState) => ({
-  showCreateGameModal: lobby.showCreateGameModal
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  showModal: () => dispatch(lobbyActions.showModal()),
-  hideModal: () => dispatch(lobbyActions.hideModal()),
-});
-
-// TODO: make this a real container with lifecycle methods
-// Dispatch a fetch request on mount
-// display the loaded rooms
-// start with a refresh rooms button?
-const LobbyContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Lobby);

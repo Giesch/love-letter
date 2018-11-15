@@ -6,13 +6,13 @@ import { ofType } from 'redux-observable';
 import { AppEpic } from '..';
 import { LobbyActionTypes, Room } from './types';
 
-export const fetchRoomsFlow: AppEpic = (action$, store, { roomsApi }) =>
+export const fetchRoomsFlow: AppEpic = (action$, store, { roomService }) =>
   action$.pipe(
     ofType(LobbyActionTypes.FETCH_ROOMS_REQUEST),
-    mergeMap(action => ajax.getJSON('/rooms').pipe( // TODO: extract to roomsApi
-      map(response => fetchRooms.success(response as Room[])), // TODO: fix this?
+    mergeMap(action => roomService.getRooms().pipe(
+      map(rooms => fetchRooms.success(rooms)),
       catchError(error => of(
-        fetchRooms.failure(error.xhr.response) // xhr wat
+        fetchRooms.failure(error.xhr.response)
       ))
     ))
   );
