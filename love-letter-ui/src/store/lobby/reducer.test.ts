@@ -1,8 +1,8 @@
 import 'mocha';
 import { expect } from 'chai';
 
-import { lobbyReducer, initialState } from './reducer';
 import { ApplicationState } from '..';
+import { lobbyReducer, initialState } from './reducer';
 import * as lobbyActions from './actions';
 import { LobbyState, Room } from './types';
 
@@ -32,7 +32,7 @@ describe('lobby reducer', () => {
 
   it('loads open rooms', () => {
     const state: LobbyState = { ...initialState, openRooms: []};
-    const room: Room = { name: "blah", players: [] };
+    const room: Room = { id: "one", name: "blah", players: [] };
     const rooms = [room];
     const result = lobbyReducer(state, lobbyActions.fetchRooms.success(rooms));
     expect(result.openRooms).to.eql(rooms);

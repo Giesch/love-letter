@@ -22,15 +22,16 @@ const CreateGameModal: React.SFC<Props> = (
         </Modal.Card.Head>
 
         <Modal.Card.Body>
-          Stuff Goes Here
+          This should be a form
         </Modal.Card.Body>
 
-        <Modal.Card.Foot
-          style={{ alignItems: 'right',
-                   justifyContent: 'right' }}>
-          <Button onClick={onClose}>NOPE</Button>
+        <Modal.Card.Foot style={{ alignItems: 'right',
+                                  justifyContent: 'right' }}>
+          <Button onClick={onClose}>
+            Cancel
+          </Button>
           <Button color="info" onClick={() => {}}>
-            YUP
+            Submit
           </Button>
         </Modal.Card.Foot>
       </Modal.Card>

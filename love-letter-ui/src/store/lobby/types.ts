@@ -12,6 +12,7 @@ export const enum LobbyActionTypes {
 }
 
 export interface Room {
+  id: string;
   name: string;
   players: string[]; // usernames
 }

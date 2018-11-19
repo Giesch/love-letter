@@ -15,7 +15,7 @@ export const lobbyReducer: Reducer<LobbyState> = (state = initialState, action) 
       return { ...state, showCreateGameModal: false };
     }
     case LobbyActionTypes.FETCH_ROOMS_SUCCESS: {
-      return { ...state, openRooms: action.payload } // TODO: Types?
+      return { ...state, openRooms: action.payload }
     }
     default: {
       return state;
