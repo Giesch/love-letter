@@ -1,5 +1,5 @@
 /target
 **/*.rs.bk
 
-/love-letter-ui/dist/bundle.js
-/love-letter-ui/dist/bundle.js.map
+/love-letter-ui/dist/*
+!/love-letter-ui/dist/index.html

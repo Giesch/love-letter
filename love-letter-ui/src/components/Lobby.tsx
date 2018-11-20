@@ -1,28 +1,24 @@
+import { Column, Columns, Heading, Section } from 'bloomer';
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { Columns, Button, Section, Heading, Modal } from 'react-bulma-components/full';
-import * as lobbyActions from '../store/lobby/actions';
-import { ApplicationState } from '../store/index';
-import CreateGameModal from './CreateGameModal';
 import { Room } from '../store/lobby/types';
+import CreateGameModal from './CreateGameModal';
 
 interface Props {
   showCreateGameModal: boolean;
-  showModal: Function;
-  hideModal: Function;
+  showModal: () => void;
+  hideModal: () => void;
   openRooms: Room[];
 }
 
 export const Lobby: React.SFC<Props> = (props) => (
   <Columns>
-    <Columns.Column size={9}>
+    <Column isSize={9}>
       <Section>
         <Heading>Welcome!</Heading>
       </Section>
-    </Columns.Column>
+    </Column>
 
-    <Columns.Column>
+    <Column>
       <CreateGameModal
         showModal={props.showCreateGameModal}
         onOpen={props.showModal}
@@ -32,7 +28,7 @@ export const Lobby: React.SFC<Props> = (props) => (
       <div>
         {props.openRooms.map(RoomDisplay)}
       </div>
-    </Columns.Column>
+    </Column>
   </Columns>
 );
 

@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Lobby } from './Lobby';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { ApplicationState } from '../store';
 import * as lobbyActions from '../store/lobby/actions';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 import { Room } from '../store/lobby/types';
+import { Lobby } from './Lobby';
 
 interface Props {
   openRooms: Room[],
   showCreateGameModal: boolean;
-  showModal: Function;
-  hideModal: Function;
-  fetchRooms: Function;
+  showModal: () => void;
+  hideModal: () => void;
+  fetchRooms: () => void;
 }
 
 class LobbyContainer extends React.Component<Props> {

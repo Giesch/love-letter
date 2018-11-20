@@ -1,40 +1,41 @@
+import { ModalContent, ModalBackground, Button, Delete, Modal, ModalCard, ModalCardBody, ModalCardFooter, ModalCardHeader, ModalCardTitle, ModalClose, Section } from 'bloomer';
 import * as React from 'react';
-import { Button, Modal, Section } from 'react-bulma-components/full';
 
 interface Props {
   showModal: boolean;
-  onOpen: Function;
-  onClose: Function;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 const CreateGameModal: React.SFC<Props> = (
   { showModal, onOpen, onClose }
 ) => (
   <Section>
-    <Button color="info" onClick={onOpen}>
+    <Button isColor="info" onClick={onOpen}>
       Create Game
     </Button>
 
-    <Modal show={showModal} onClose={onClose} closeOnBlur={true}>
-      <Modal.Card>
-        <Modal.Card.Head onClose={onClose}>
-          <Modal.Card.Title>Create Game</Modal.Card.Title>
-        </Modal.Card.Head>
+    <Modal isActive={showModal}>
+      <ModalBackground onClick={onClose} />
+      <ModalCard>
+        <ModalCardHeader>
+          <ModalCardTitle>Create Game</ModalCardTitle>
+          <Delete onClick={onClose} />
+        </ModalCardHeader>
 
-        <Modal.Card.Body>
+        <ModalCardBody>
           This should be a form
-        </Modal.Card.Body>
+        </ModalCardBody>
 
-        <Modal.Card.Foot style={{ alignItems: 'right',
-                                  justifyContent: 'right' }}>
+        <ModalCardFooter isPulled="right" hasTextAlign="right">
           <Button onClick={onClose}>
             Cancel
           </Button>
-          <Button color="info" onClick={() => {}}>
+          <Button isColor="info" onClick={() => {}}>
             Submit
           </Button>
-        </Modal.Card.Foot>
-      </Modal.Card>
+        </ModalCardFooter>
+      </ModalCard>
     </Modal>
   </Section>
 );
