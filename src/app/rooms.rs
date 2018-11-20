@@ -1,19 +1,22 @@
 use app::app_state::AppState;
+use std::collections::HashSet;
 use uuid::Uuid;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Room {
     pub id: String,
     pub name: String,
-    pub players: Vec<String>, // TODO: ids? usernames? both?
+    pub players: HashSet<String>, // TODO: ids? usernames? both?
 }
 
 impl Room {
     pub fn new(room: InitialRoom) -> Room {
+        let mut players = HashSet::new();
+        players.insert(room.player);
         Room {
             id: Uuid::new_v4().to_string(),
             name: room.name,
-            players: vec![room.player],
+            players,
         }
     }
 }
@@ -65,6 +68,6 @@ mod tests {
         assert_eq!(1, result.len());
         let room = result.get(0).unwrap();
         assert_eq!("example", room.name);
-        assert_eq!("somebody", room.players.get(0).unwrap());
+        assert_eq!(Some(&"somebody".to_string()), room.players.iter().next());
     }
 }

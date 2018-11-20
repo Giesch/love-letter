@@ -1,4 +1,5 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
+use std::iter::FromIterator;
 use std::sync::{Arc, Mutex};
 
 use app::rooms::Room;
@@ -17,13 +18,13 @@ impl AppState {
         let r1 = Room {
             id: "one".to_string(),
             name: "First Room".to_string(),
-            players: vec!["user A".to_string(), "user B".to_string()],
+            players: HashSet::from_iter(vec!["user A".to_string(), "user B".to_string()]),
         };
 
         let r2 = Room {
             id: "two".to_string(),
             name: "Second Room".to_string(),
-            players: vec!["user C".to_string(), "user D".to_string()],
+            players: HashSet::from_iter(vec!["user C".to_string(), "user D".to_string()]),
         };
 
         let mut open_rooms = HashMap::new();
