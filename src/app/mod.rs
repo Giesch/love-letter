@@ -44,15 +44,6 @@ fn create_room((request, state): (Json<InitialRoom>, State<AppState>)) -> Json<R
     Json(room)
 }
 
-fn delete_room((request, state): (Json<String>, State<AppState>)) -> HttpResponse {
-    let deleted = state.delete_room(&request.into_inner());
-    if deleted {
-        HttpResponse::Ok().finish()
-    } else {
-        HttpResponse::NotFound().finish()
-    }
-}
-
 pub fn build_app() -> App<AppState> {
     App::with_state(AppState::new())
         .middleware(Logger::default())
@@ -63,6 +54,5 @@ pub fn build_app() -> App<AppState> {
         .resource("/rooms", |r| {
             r.method(Method::GET).with(list_rooms);
             r.method(Method::POST).with(create_room);
-            r.method(Method::DELETE).with(delete_room);
         })
 }
