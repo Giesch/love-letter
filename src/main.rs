@@ -1,15 +1,13 @@
-extern crate actix_web;
+
 #[macro_use]
 extern crate serde_derive;
-extern crate uuid;
-#[macro_use]
-extern crate failure;
+
 
 use actix_web::server;
 use std::env;
 
 mod app;
-use app::build_app;
+use crate::app::build_app;
 
 fn main() {
     let port = env::var("PORT").unwrap_or_else(|_| "3000".to_string());

@@ -1,8 +1,7 @@
-use std::collections::{HashMap, HashSet};
-use std::iter::FromIterator;
+use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
-use app::rooms::Room;
+use crate::app::rooms::Room;
 
 pub struct AppState {
     pub open_rooms: Arc<Mutex<HashMap<String, Room>>>,

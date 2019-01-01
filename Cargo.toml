@@ -2,7 +2,7 @@
 name = "love-letter"
 version = "0.1.0"
 authors = ["Dan Knutson <dan.knutson@gmail.com>"]
-edition = "2015"
+edition = "2018"
 
 [dependencies]
 actix-web = "0.7"

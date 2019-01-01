@@ -1,5 +1,4 @@
-extern crate actix_web;
-extern crate futures;
+use actix_web;
 
 use actix_web::http::Method;
 use actix_web::middleware::Logger;
@@ -13,25 +12,25 @@ mod app_state;
 use self::app_state::AppState;
 
 pub fn index(_req: HttpRequest<AppState>) -> HttpResponse {
-    let index_html = include_str!("../../love-letter-ui/dist/index.html");
+    let index_html = include_str!("../love-letter-ui/dist/index.html");
     HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
         .body(index_html)
 }
 
 fn styles(_req: HttpRequest<AppState>) -> HttpResponse {
-    let styles_css = include_str!("../../love-letter-ui/dist/llstyles.css");
+    let styles_css = include_str!("../love-letter-ui/dist/llstyles.css");
     HttpResponse::Ok()
         .content_type("text/css; charset=utf-8")
         .body(styles_css)
 }
 
 fn bundle(_req: HttpRequest<AppState>) -> &'static str {
-    include_str!("../../love-letter-ui/dist/bundle.js")
+    include_str!("../love-letter-ui/dist/bundle.js")
 }
 
 fn sourcemap(_req: HttpRequest<AppState>) -> &'static str {
-    include_str!("../../love-letter-ui/dist/bundle.js.map")
+    include_str!("../love-letter-ui/dist/bundle.js.map")
 }
 
 fn list_rooms(req: HttpRequest<AppState>) -> Json<Vec<Room>> {
