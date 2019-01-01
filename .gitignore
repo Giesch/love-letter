@@ -2,4 +2,5 @@
 **/*.rs.bk
 
 /love-letter-ui/dist/*
+/love-letter-ui/node_modules
 !/love-letter-ui/dist/index.html
