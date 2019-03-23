@@ -1,7 +1,5 @@
-
 #[macro_use]
 extern crate serde_derive;
-
 
 use actix_web::server;
 use std::env;

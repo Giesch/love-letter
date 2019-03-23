@@ -1,4 +1,3 @@
-use crate::app::app_state::AppState;
 use std::collections::HashSet;
 use uuid::Uuid;
 
@@ -10,7 +9,7 @@ pub struct Room {
 }
 
 impl Room {
-    pub fn new(room: InitialRoom) -> Room {
+    pub fn new(room: CreateRoomRequest) -> Room {
         let mut players = HashSet::new();
         players.insert(room.player);
         Room {
@@ -22,51 +21,8 @@ impl Room {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
-pub struct InitialRoom {
+pub struct CreateRoomRequest {
     pub name: String,
     pub player: String,
-}
-
-pub trait RoomsApi {
-    fn open_rooms(&self) -> Vec<Room>;
-    fn create_room(&self, room: InitialRoom) -> Room;
-}
-
-impl RoomsApi for AppState {
-    fn open_rooms(&self) -> Vec<Room> {
-        let rooms = self.open_rooms.lock().unwrap();
-        (*rooms).values().map(Room::clone).collect()
-    }
-
-    fn create_room(&self, room: InitialRoom) -> Room {
-        let room = Room::new(room);
-        let mut rooms = self.open_rooms.lock().unwrap();
-        (*rooms).insert(room.id.clone(), room.clone());
-
-        room
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn create_and_read_room() {
-        let state = AppState::new();
-        assert_eq!(Vec::<Room>::new(), state.open_rooms());
-
-        let request = InitialRoom {
-            name: "example".to_string(),
-            player: "somebody".to_string(),
-        };
-
-        state.create_room(request);
-
-        let result = state.open_rooms();
-        assert_eq!(1, result.len());
-        let room = result.get(0).unwrap();
-        assert_eq!("example", room.name);
-        assert_eq!(Some(&"somebody".to_string()), room.players.iter().next());
-    }
+    pub passphrase: Option<String>,
 }

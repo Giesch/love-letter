@@ -1,24 +1,41 @@
-import { Reducer } from 'redux'
-import { LobbyState, LobbyActionTypes } from './types';
+import { Reducer } from "redux";
+import { getType } from "typesafe-actions";
+import {
+  createRoom,
+  fetchRooms,
+  hideModal,
+  LobbyAction,
+  showModal
+} from "./actions";
+import { LobbyState } from "./types";
 
 export const initialState: LobbyState = {
   showCreateGameModal: false,
-  openRooms: [],
-}
+  openRooms: []
+};
 
-export const lobbyReducer: Reducer<LobbyState> = (state = initialState, action) => {
+export const lobbyReducer: Reducer<LobbyState> = (
+  state = initialState,
+  action: LobbyAction
+) => {
   switch (action.type) {
-    case LobbyActionTypes.SHOW_CREATE_GAME: {
+    case getType(showModal): {
       return { ...state, showCreateGameModal: true };
     }
-    case LobbyActionTypes.HIDE_CREATE_GAME: {
+    case getType(hideModal): {
       return { ...state, showCreateGameModal: false };
     }
-    case LobbyActionTypes.FETCH_ROOMS_SUCCESS: {
-      return { ...state, openRooms: action.payload }
+    case getType(fetchRooms.success): {
+      return { ...state, openRooms: action.payload };
+    }
+    case getType(createRoom.success): {
+      return {
+        ...state,
+        openRooms: [action.payload].concat(state.openRooms)
+      };
     }
     default: {
       return state;
     }
   }
-}
+};

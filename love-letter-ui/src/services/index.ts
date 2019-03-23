@@ -1,4 +1,4 @@
-import { RoomService, roomService } from "./rooms";
+import { RoomService, roomService } from "./roomservice";
 
 export interface Services {
   roomService: RoomService;

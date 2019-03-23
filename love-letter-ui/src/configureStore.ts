@@ -1,11 +1,12 @@
-import { applyMiddleware, createStore, Store } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
-import { ApplicationState, rootEpic, rootReducer, AppEpicMiddleware} from './store';
-import { ajax } from 'rxjs/ajax';
-import { Room } from './store/lobby/types';
-import { map } from 'rxjs/operators';
-import { RoomService, roomService } from './services/rooms';
-import { services } from './services';
+import { applyMiddleware, createStore, Store } from "redux";
+import { createEpicMiddleware } from "redux-observable";
+import { services } from "./services";
+import {
+  AppEpicMiddleware,
+  ApplicationState,
+  rootEpic,
+  rootReducer
+} from "./store";
 
 export const configureStore = (
   initialState: ApplicationState
@@ -24,5 +25,3 @@ export const configureStore = (
 
   return store;
 };
-
-

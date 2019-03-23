@@ -1,17 +1,18 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { ApplicationState } from '../store';
-import * as lobbyActions from '../store/lobby/actions';
-import { Room } from '../store/lobby/types';
-import { Lobby } from './Lobby';
+import * as React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { ApplicationState } from "../store";
+import * as lobbyActions from "../store/lobby/actions";
+import { Room, CreateRoomRequest } from "../store/lobby/types";
+import { Lobby } from "./Lobby";
 
 interface Props {
-  openRooms: Room[],
+  openRooms: Room[];
   showCreateGameModal: boolean;
   showModal: () => void;
   hideModal: () => void;
   fetchRooms: () => void;
+  createRoom: (room: CreateRoomRequest) => void;
 }
 
 class LobbyContainer extends React.Component<Props> {
@@ -20,19 +21,21 @@ class LobbyContainer extends React.Component<Props> {
   }
 
   render() {
-    return (<Lobby {...this.props} />);
+    return <Lobby {...this.props} />;
   }
 }
 
 const mapStateToProps = ({ lobby }: ApplicationState) => ({
   showCreateGameModal: lobby.showCreateGameModal,
-  openRooms: lobby.openRooms,
+  openRooms: lobby.openRooms
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   showModal: () => dispatch(lobbyActions.showModal()),
   hideModal: () => dispatch(lobbyActions.hideModal()),
   fetchRooms: () => dispatch(lobbyActions.fetchRooms.request()),
+  createRoom: (room: CreateRoomRequest) =>
+    dispatch(lobbyActions.createRoom.request(room))
 });
 
 export default connect(
